@@ -46,9 +46,10 @@ public class Exercise1Test extends ClassicOnlineStore {
          * Create a {@link Predicate} which predicates if the input string contains "e".
          * Remove elements from {@link nameCollection} which contains "e" using {@link Collection#removeIf}.
          */
-        Predicate<Object> predicate = null;
+        //Predicate<Object> predicate = null;
         // nameCollection.
-
+        nameCollection.removeIf((predicate)-> predicate.contains("e"));
+        
         assertThat(nameCollection.toString(), is("[Patrick, Chris]"));
     }
 
@@ -61,9 +62,10 @@ public class Exercise1Test extends ClassicOnlineStore {
          * Create a {@link UnaryOperator} which returns given string wrapped with "()".
          * Replace the elements in {@link nameList} with string wrapped with "()" using {@link List#replaceAll} .
          */
-        UnaryOperator<Object> unaryOperator = null;
+        //UnaryOperator<Object> unaryOperator = null;
         // nameList.
-
+        nameList.replaceAll((unaryoperator) -> unaryoperator.replace(unaryoperator, "("+unaryoperator+")"));
+        
         assertThat(nameList.toString(), is("[(Joe), (Steven), (Patrick), (Chris)]"));
     }
 
@@ -75,8 +77,15 @@ public class Exercise1Test extends ClassicOnlineStore {
         /**
          * Create a {@link Comparator} to sort the name list by their name's length in ascending order.
          */
-        Comparator<Object> comparator = null;
+        
+        Comparator<Object> comparator = new Comparator<Object>(){
+        		public int compare(Object object1, Object object2){
+        			return object1.toString().length() - object2.toString().length();
+        		}
+		};
         // nameList.
+        nameList.sort(comparator);
+		
 
         assertThat(nameList.toString(), is("[Joe, Chris, Steven, Patrick]"));
     }
@@ -90,7 +99,7 @@ public class Exercise1Test extends ClassicOnlineStore {
          * Create a serial {@link Stream} using {@link Collection#stream}
          * You can learn about {@link Stream} APIs at stream-api module.
          */
-        Stream<Object> nameStream = null;
+        Stream<Object> nameStream = nameList.stream();
 
         assertThat(nameStream.count(), is(4L));
         assertThat(nameStream.isParallel(), is(false));
