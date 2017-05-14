@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.hamcrest.Matchers.is;
@@ -99,7 +101,7 @@ public class Exercise1Test extends ClassicOnlineStore {
          * Create a serial {@link Stream} using {@link Collection#stream}
          * You can learn about {@link Stream} APIs at stream-api module.
          */
-        Stream<Object> nameStream = nameList.stream();
+        Stream<String> nameStream = nameList.stream();
 
         assertThat(nameStream.count(), is(4L));
         assertThat(nameStream.isParallel(), is(false));
@@ -113,7 +115,7 @@ public class Exercise1Test extends ClassicOnlineStore {
         /**
          * Create a parallel {@link Stream} using {@link Collection#parallelStream} or {@link Stream#parallel}
          */
-        Stream<Object> nameParallelStream = null;
+        Stream<String> nameParallelStream = nameList.parallelStream();
 
         assertThat(nameParallelStream.count(), is(4L));
         assertThat(nameParallelStream.isParallel(), is(true));
