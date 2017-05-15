@@ -8,6 +8,8 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
@@ -74,7 +76,7 @@ public class Exercise1Test {
          * Create a {@link LocalDate} from {@link ld} with 10 month later
          * by using {@link LocalDate#plusMonths} or {@link LocalDate#plus}
          */
-        LocalDate localDate = ld.plusMonths(10);
+        LocalDate localDate = ld.plus(10, ChronoUnit.MONTHS);//ld.plusMonths(10);
 
         assertThat(localDate.getYear(), is(ld.getYear() + 1));
         assertThat(localDate.getMonth(), is(Month.APRIL));
@@ -89,7 +91,7 @@ public class Exercise1Test {
          * Create a {@link LocalDate} from {@link ld} with 10 days before
          * by using {@link LocalDate#minusDays} or {@link LocalDate#minus}
          */
-        LocalDate localDate = ld.minusDays(10);
+        LocalDate localDate = ld.minus(10, ChronoUnit.DAYS);//ld.minusDays(10);
 
         assertThat(localDate.getYear(), is(ld.getYear()));
         assertThat(localDate.getMonth(), is(ld.getMonth()));
